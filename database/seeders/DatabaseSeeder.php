@@ -14,18 +14,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // 관리자 계정 생성
-        User::create([
-            'name' => 'Admin',
-            'email' => 'admin@tube-insight.com',
-            'password' => Hash::make('Admin@1234!'),
-            'role' => 'admin',
-            'is_active' => true,
-            'email_verified_at' => now(),
-        ]);
+        // 관리자 계정 생성 또는 업데이트 (중복 실행 방지)
+        $admin = User::updateOrCreate(
+            ['email' => 'admin@tube-insight.com'],
+            [
+                'name' => 'Admin',
+                'password' => Hash::make('Admin@1234!'),
+                'role' => 'admin',
+                'is_active' => true,
+                'email_verified_at' => now(),
+            ]
+        );
+
+        $action = $admin->wasRecentlyCreated ? '생성되었습니다' : '이미 존재합니다';
 
         $this->command->info('========================================');
-        $this->command->info('✅ 관리자 계정이 생성되었습니다!');
+        $this->command->info("✅ 관리자 계정이 {$action}!");
         $this->command->info('========================================');
         $this->command->info('📧 이메일: admin@tube-insight.com');
         $this->command->info('🔑 비밀번호: Admin@1234!');
