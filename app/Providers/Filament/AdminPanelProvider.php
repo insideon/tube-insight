@@ -10,8 +10,6 @@ use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use Filament\Widgets\AccountWidget;
-use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -39,8 +37,13 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
-                AccountWidget::class,
-                FilamentInfoWidget::class,
+                \App\Filament\Widgets\PerformanceStatsWidget::class,
+                \App\Filament\Widgets\ChannelPerformanceChart::class,
+                \App\Filament\Widgets\TeamPerformanceChart::class,
+                \App\Filament\Widgets\ContentPlanStatusChart::class,
+                \App\Filament\Widgets\PerformanceGradeChart::class,
+                \App\Filament\Widgets\TopChannelsTable::class,
+                \App\Filament\Widgets\CreatorPerformanceWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
