@@ -12,11 +12,13 @@ class Login extends BaseLogin
     {
         parent::mount();
 
-        $this->form->fill([
-            'email' => 'test@example.com',
-            'password' => 'Test@1234!',
-            'remember' => false,
-        ]);
+        if (app()->environment('local')) {
+            $this->form->fill([
+                'email' => 'admin@tube-insight.com',
+                'password' => 'Admin@1234!',
+                'remember' => true,
+            ]);
+        }
     }
 
     public function form(Schema $schema): Schema
