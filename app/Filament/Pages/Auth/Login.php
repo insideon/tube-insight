@@ -8,6 +8,17 @@ use Filament\Schemas\Schema;
 
 class Login extends BaseLogin
 {
+    public function mount(): void
+    {
+        parent::mount();
+
+        $this->form->fill([
+            'email' => 'test@example.com',
+            'password' => 'Test@1234!',
+            'remember' => false,
+        ]);
+    }
+
     public function form(Schema $schema): Schema
     {
         return $schema
