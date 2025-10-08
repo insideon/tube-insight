@@ -35,5 +35,9 @@ class DatabaseSeeder extends Seeder
         $this->command->info('🔑 비밀번호: Admin@1234!');
         $this->command->info('⚠️  프로덕션에서는 반드시 비밀번호를 변경하세요!');
         $this->command->info('========================================');
+        $this->command->newLine();
+
+        // 샘플 데이터 생성
+        $this->call(SampleDataSeeder::class);
     }
 }
