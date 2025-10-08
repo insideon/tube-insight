@@ -12,13 +12,12 @@ class Login extends BaseLogin
     {
         parent::mount();
 
-        if (app()->environment('local')) {
-            $this->form->fill([
-                'email' => 'admin@tube-insight.com',
-                'password' => 'Admin@1234!',
-                'remember' => true,
-            ]);
-        }
+        // 프로토타입 데모용 - 자동 로그인 정보 채우기
+        $this->form->fill([
+            'email' => 'admin@tube-insight.com',
+            'password' => 'Admin@1234!',
+            'remember' => true,
+        ]);
     }
 
     public function form(Schema $schema): Schema
